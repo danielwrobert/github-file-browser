@@ -6,7 +6,7 @@ import { Route, IndexRoute } from 'react-router';
 
 export default (
 	<Route path="/" component={ Main }>
-		<Route path="component/:filename" component={ File } />
+		<Route path="component/:file" component={ File } />
 		<IndexRoute component={ Home } />
 	</Route>
 );

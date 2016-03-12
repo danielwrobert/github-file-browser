@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default function getGitHubFileData( filePath ) {
-	return axios.get( `https://api.github.com/repos/danielwrobert/blank-canvas/contents/${ filePath }` )
-		.then( ( responseArr ) => ( { contents: responseArr[0].data.path } ) );
+export default function getGitHubFileData( file ) {
+	return axios.get( `https://api.github.com/repos/danielwrobert/blank-canvas/contents/${ file }` )
+		.then( ( response ) => ( { contents: response.data.name } ) );
 }
