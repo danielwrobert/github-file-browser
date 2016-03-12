@@ -4,7 +4,7 @@ const FileContent = ( { file } ) => {
 	console.log( file );
 	return (
 		<div className="file-wrap">
-			{ file.name && <h2 className="file-title">{ file.name }</h2> }
+			{ file && <h2 className="file-title">{ file }</h2> }
 		</div>
 	)
 }
