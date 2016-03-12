@@ -6,26 +6,28 @@ class File extends React.Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			file: 'readme'
+			files: []
 		}
 	}
-	init( file ) {
-		getGitHubFileData( file )
+	init() {
+		getGitHubFileData()
 			.then( function( data ) {
 				this.setState({
-					file: data.name
+					files: data.contents
 				} );
 			}.bind( this ) );
 	}
 	componentDidMount() {
-		this.init( this.props.params.file );
+		//this.init( this.props.params.file );
+		this.init();
 	}
-	compnentWillReceiveProps( nextProps ) {
-		this.init( nextProps.params.file );
-	}
+	//compnentWillReceiveProps( nextProps ) {
+		//this.init( nextProps.params.file );
+	//}
 	render() {
 		return (
-			<FileContent file={ this.props.params.file }/>
+			//<FileContent file={ this.props.params.file }/>
+			<FileContent files={ this.state.files }/>
 		)
 	}
 }

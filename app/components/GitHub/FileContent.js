@@ -1,16 +1,23 @@
 import React from 'react';
 
-const FileContent = ( { file } ) => {
-	console.log( file );
+const FileContent = ( { files } ) => {
+	console.log( files );
 	return (
-		<div className="file-wrap">
-			{ file && <h2 className="file-title">{ file }</h2> }
-		</div>
+		<ul className="list-group">
+			{ files.map( ( file, index ) => {
+				return (
+					<li className="list-group-item" key={ index }>
+						{ file.html_url && <h4>{ file.name }</h4> }
+						{ file.download_url && <div className="download-link"><a href={ file.download_url }>{ file.download_url }</a></div> }
+					</li>
+				);
+			} ) }
+		</ul>
 	)
 }
 
 FileContent.propTypes = {
-	file: React.PropTypes.string.isRequired
+	files: React.PropTypes.array.isRequired
 }
 
 export default FileContent;
