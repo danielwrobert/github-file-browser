@@ -1,8 +1,7 @@
 import React from 'react';
-import getGitHubFileData from '../utils/helpers';
+import getGitHubInfo from '../utils/helpers';
 import Header from './Header';
 import FileNav from './FileNav';
-import FileContent from './FileContent';
 
 class Main extends React.Component {
 	constructor( props ) {

@@ -10,5 +10,5 @@ const getFileContent = function( filename ) {
 
 export default function getGitHubInfo( filename ) {
 	return axios.all( [getFileList(), getFileContent( filename )] )
-		.then( ( arr ) => ( { files: arr[0].data, filecontent: arr[1].data } ) );
+		.then( ( arr ) => ( { files: arr[0].data.contents, filecontent: arr[1].data } ) );
 }
