@@ -1,7 +1,7 @@
 import React from 'react';
-import getGitHubInfo from '../utils/helpers';
 import Header from './Header';
 import FileNav from './FileNav';
+import { getGitHubInfo, getFileList, getFileContent } from '../utils/helpers';
 
 class Main extends React.Component {
 	constructor( props ) {
@@ -12,8 +12,10 @@ class Main extends React.Component {
 		}
 	}
 	init( filename ) {
-		getGitHubInfo( filename )
+		getGitHubInfo( filename || 'README.md' )
 			.then( function( data ) {
+				console.log( 'Data returned from getGitHubInfo call:' );
+				console.log( data );
 				this.setState({
 					files: data.files,
 					filecontent: data.filecontent

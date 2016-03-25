@@ -4,7 +4,7 @@ import FileContent from './FileContent';
 
 const File = () => {
 	return (
-		<FileContent filename={ this.props.params.filename } filecontent={ this.state.filecontent } />
+		<FileContent filename={ this.props.params.filename || 'README.md' } filecontent={ this.state.filecontent } />
 	)
 }
 
