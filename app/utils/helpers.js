@@ -6,7 +6,8 @@ export function getFileList() {
 };
 
 export function getFileContent( filename ) {
-	return axios.get( `https://raw.githubusercontent.com/danielwrobert/blank-canvas/master/${ filename }` );
+	return axios.get( `https://raw.githubusercontent.com/danielwrobert/blank-canvas/master/${ filename }` )
+		.then( ( response ) => ( { filecontent: response.data } ) );
 };
 
 export function getGitHubInfo( filename ) {
