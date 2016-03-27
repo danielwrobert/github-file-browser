@@ -11,19 +11,28 @@ class Main extends React.Component {
 			filecontent: ''
 		}
 	}
-	init( filename ) {
-		getGitHubInfo( filename || 'README.md' )
+	//init( filename ) {
+		//getGitHubInfo( filename || 'README.md' )
+			//.then( function( data ) {
+				//console.log( 'Data returned from getGitHubInfo call:' );
+				//console.log( data );
+				//this.setState({
+					//files: data.files,
+					//filecontent: data.filecontent
+				//} );
+			//}.bind( this ) );
+	//}
+	initFileNav() {
+		getFileList()
 			.then( function( data ) {
-				console.log( 'Data returned from getGitHubInfo call:' );
-				console.log( data );
-				this.setState({
+				this.setState( {
 					files: data.files,
-					filecontent: data.filecontent
+					filecontent: ''
 				} );
 			}.bind( this ) );
 	}
 	componentDidMount() {
-		this.init( this.props.params.filename );
+		this.initFileNav();
 	}
 	compnentWillReceiveProps( nextProps ) {
 		this.init( nextprops.params.filename );

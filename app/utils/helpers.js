@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 export function getFileList() {
-	return axios.get( 'https://api.github.com/repos/danielwrobert/blank-canvas/contents' );
+	return axios.get( 'https://api.github.com/repos/danielwrobert/blank-canvas/contents' )
+		.then( ( response ) => ( { files: response.data } ) );
 };
 
 export function getFileContent( filename ) {
