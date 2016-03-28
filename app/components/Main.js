@@ -26,8 +26,15 @@ class Main extends React.Component {
 		getFileList()
 			.then( function( data ) {
 				this.setState( {
-					files: data.files,
-					filecontent: ''
+					files: data.files
+				} );
+			}.bind( this ) );
+	}
+	initFileContent( filename ) {
+		getFileContent( filename )
+			.then( function( data ) {
+				this.setState( {
+					filecontent: data.filecontent
 				} );
 			}.bind( this ) );
 	}
@@ -35,7 +42,7 @@ class Main extends React.Component {
 		this.initFileNav();
 	}
 	compnentWillReceiveProps( nextProps ) {
-		this.init( nextprops.params.filename );
+		this.initFileContent( nextprops.params.filename );
 	}
 	render() {
 		return (
