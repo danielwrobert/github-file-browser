@@ -44,7 +44,7 @@ class Main extends React.Component {
 				<div className="container" style={{ marginTop: 50 }}>
 					<div className="row">
 						<div className="col-md-4">
-							<FileNav files={ this.state.files } />
+							<FileNav history={ this.props.history } files={ this.state.files } />
 						</div>
 						<div className="col-md-8">
 							{ this.props.children }
