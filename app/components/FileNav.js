@@ -1,5 +1,5 @@
 import React from 'react';
-//import Router from 'react-router'; -- will need if I add in History
+import Router from 'react-router';
 
 class FileNav extends React.Component {
 	updateComponent( e ) {
@@ -7,15 +7,16 @@ class FileNav extends React.Component {
 		alert("Jello!");
 
 		const filename = e.target.dataset.filename;
-		this.props.history.pushState( null, '/component/' + filename );
+		this.context.router.push( '/component/' + filename );
 	}
 	render() {
+		const { files } = this.props;
 		return (
 			<ul className="list-group">
-				{ this.props.files.map( ( file, index ) => {
+				{ files.map( ( file, index ) => {
 					return (
 						<li className="list-group-item" key={ index }>
-							{ file.download_url && <a href={ file.download_url } data-filename={ file.path } onClick={ () => this.updateComponent() }>{ file.path }</a> }
+							{ file.download_url && <a href={ file.download_url } onClick={ ( e ) => this.updateComponent( e ) } data-filename={ file.path }>{ file.path }</a> }
 						</li>
 					);
 				} ) }
@@ -25,8 +26,11 @@ class FileNav extends React.Component {
 }
 
 FileNav.propTypes = {
-	files: React.PropTypes.array.isRequired,
-	history: React.PropTypes.object.isRequired
+	files: React.PropTypes.array.isRequired
+}
+
+FileNav.contextTypes = {
+	router: React.PropTypes.object.isRequired
 }
 
 export default FileNav;
