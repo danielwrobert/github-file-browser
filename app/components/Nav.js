@@ -33,6 +33,4 @@ Nav.contextTypes = {
 	router: React.PropTypes.object.isRequired
 }
 
-//Nav.initFileNav();
-
 export default Nav;
