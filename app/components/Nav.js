@@ -1,7 +1,7 @@
 import React from 'react';
 import Router from 'react-router';
 
-class FileNav extends React.Component {
+class Nav extends React.Component {
 	updateComponent( e ) {
 		e.preventDefault();
 		alert("Jello!");
@@ -25,12 +25,14 @@ class FileNav extends React.Component {
 	}
 }
 
-FileNav.propTypes = {
+Nav.propTypes = {
 	files: React.PropTypes.array.isRequired
 }
 
-FileNav.contextTypes = {
+Nav.contextTypes = {
 	router: React.PropTypes.object.isRequired
 }
 
-export default FileNav;
+//Nav.initFileNav();
+
+export default Nav;
