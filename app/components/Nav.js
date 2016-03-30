@@ -1,7 +1,22 @@
 import React from 'react';
 import Router from 'react-router';
+import { getFileList } from '../utils/helpers';
 
 class Nav extends React.Component {
+	constructor( props ) {
+		super( props );
+		this.state = {
+			fileList: []
+		}
+	}
+	initFileNav() {
+		getFileList()
+			.then( function( data ) {
+				this.setState( {
+					fileList: data.files
+				} );
+			}.bind( this ) );
+	}
 	updateComponent( e ) {
 		e.preventDefault();
 		alert("Jello!");
@@ -9,11 +24,13 @@ class Nav extends React.Component {
 		const filename = e.target.dataset.filename;
 		this.context.router.push( '/component/' + filename );
 	}
+	componentDidMount() {
+		this.initFileNav();
+	}
 	render() {
-		const { files } = this.props;
 		return (
 			<ul className="list-group">
-				{ files.map( ( file, index ) => {
+				{ this.state.fileList.map( ( file, index ) => {
 					return (
 						<li className="list-group-item" key={ index }>
 							{ file.download_url && <a href={ file.download_url } onClick={ ( e ) => this.updateComponent( e ) } data-filename={ file.path }>{ file.path }</a> }
@@ -25,9 +42,9 @@ class Nav extends React.Component {
 	}
 }
 
-Nav.propTypes = {
-	files: React.PropTypes.array.isRequired
-}
+//Nav.propTypes = {
+	//files: React.PropTypes.array.isRequired
+//}
 
 Nav.contextTypes = {
 	router: React.PropTypes.object.isRequired
