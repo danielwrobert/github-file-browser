@@ -5,19 +5,21 @@ import { getFileList } from '../utils/helpers';
 
 // Add API call here to return a list of files to map through below
 class Main extends React.Component {
-	constructor() {
-		super()
-		this.fileList = []
+	constructor( props ) {
+		super( props );
+		this.state = {
+			fileList: []
+		}
 	}
 	initFileNav() {
 		getFileList()
 			.then( function( data ) {
-				this.fileList = this.fileList.concat( data.files );
-				console.log( data.files );
-				console.log( this.fileList );
+				this.setState( {
+					fileList: data.files
+				} );
 			}.bind( this ) );
 	}
-	componentWillMount() {
+	componentDidMount() {
 		this.initFileNav();
 	}
 	render() {
@@ -28,7 +30,7 @@ class Main extends React.Component {
 				<div className="container" style={{ marginTop: 50 }}>
 					<div className="row">
 						<div className="col-md-4">
-							<Nav history={ history } files={ this.fileList } />
+							<Nav history={ history } files={ this.state.fileList } />
 						</div>
 						<div className="col-md-8">
 							{ children }
