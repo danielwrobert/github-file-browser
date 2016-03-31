@@ -20,7 +20,11 @@ class Nav extends React.Component {
 	updateComponent( e ) {
 		e.preventDefault();
 		const filename = e.target.dataset.filename;
-		this.context.router.push( '/component/' + filename );
+		const filetype = e.target.dataset.type;
+
+		if ( filetype === 'file' ) {
+			this.context.router.push( '/component/' + filename );
+		}
 	}
 	componentDidMount() {
 		this.initFileNav();
@@ -31,7 +35,7 @@ class Nav extends React.Component {
 				{ this.state.fileList.map( ( file, index ) => {
 					return (
 						<li className="list-group-item" key={ index }>
-							{ file.download_url && <a href={ file.download_url } onClick={ ( e ) => this.updateComponent( e ) } data-filename={ file.path }>{ file.path }</a> }
+							{ file.name && <a href={ file.download_url } onClick={ ( e ) => this.updateComponent( e ) } data-type={ file.type } data-filename={ file.name }>{ file.name }</a> }
 						</li>
 					);
 				} ) }

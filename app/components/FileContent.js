@@ -1,13 +1,11 @@
 import React from 'react';
 
 const FileContent = ( { filename, filecontent } ) => {
-	console.log( 'File content:' );
-	console.log( filecontent );
 	return (
 		<div className="file-content-wrapper">
 			<h2>{ filename }</h2>
 			<div className="file-content">
-				{ filecontent }
+				<pre>{ filecontent }</pre>
 			</div>
 		</div>
 	)
