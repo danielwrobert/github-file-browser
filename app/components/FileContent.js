@@ -4,9 +4,9 @@ const FileContent = ( { filename, filecontent } ) => {
 	console.log( 'File content:' );
 	console.log( filecontent );
 	return (
-		<div class="file-content-wrapper">
+		<div className="file-content-wrapper">
 			<h2>{ filename }</h2>
-			<div class="file-content">
+			<div className="file-content">
 				{ filecontent }
 			</div>
 		</div>

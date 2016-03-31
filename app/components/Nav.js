@@ -19,8 +19,6 @@ class Nav extends React.Component {
 	}
 	updateComponent( e ) {
 		e.preventDefault();
-		alert("Jello!");
-
 		const filename = e.target.dataset.filename;
 		this.context.router.push( '/component/' + filename );
 	}

@@ -7,29 +7,9 @@ class File extends React.Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			//files: [],
 			filecontent: ''
 		}
 	}
-	//init( filename ) {
-		//getGitHubInfo( filename || 'README.md' )
-			//.then( function( data ) {
-				//console.log( 'Data returned from getGitHubInfo call:' );
-				//console.log( data );
-				//this.setState({
-					//files: data.files,
-					//filecontent: data.filecontent
-				//} );
-			//}.bind( this ) );
-	//}
-	//initFileNav() {
-		//getFileList()
-			//.then( function( data ) {
-				//this.setState( {
-					//files: data.files
-				//} );
-			//}.bind( this ) );
-	//}
 	initFileContent( filename ) {
 		getFileContent( filename )
 			.then( function( data ) {
