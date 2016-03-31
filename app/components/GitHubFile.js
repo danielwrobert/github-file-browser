@@ -21,8 +21,8 @@ class File extends React.Component {
 	componentDidMount() {
 		this.initFileContent( this.props.params.filename );
 	}
-	compnentWillReceiveProps( nextProps ) {
-		this.initFileContent( nextprops.params.filename );
+	componentWillUpdate() {
+		this.initFileContent( this.props.params.filename );
 	}
 	render() {
 		return (
