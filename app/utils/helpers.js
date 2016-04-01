@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 export function getFileList() {
-	return axios.get( 'https://api.github.com/repos/danielwrobert/blank-canvas/contents' )
+	return axios.get( 'https://api.github.com/repos/Automattic/theme-components/contents' )
 		.then( ( response ) => ( { files: response.data } ) );
 };
 
 export function getFileContent( filename ) {
-	return axios.get( `https://raw.githubusercontent.com/danielwrobert/blank-canvas/master/${ filename }` )
+	return axios.get( `https://raw.githubusercontent.com/Automattic/theme-components/master/${ filename }` )
 		.then( ( response ) => ( { filecontent: response.data } ) );
 };
 
