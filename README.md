@@ -7,8 +7,7 @@ Included:
 - NVM
 - React.js
 - Webpack
-- Ruby
-- Sass
+- PostCSS
 
 Uses the ubunty/trusty64 Vagrant box for the official Ubuntu Server 14.04 LTS (Trusty Tahr) builds.
 
