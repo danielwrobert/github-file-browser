@@ -1,6 +1,7 @@
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var autoprefixer = require('autoprefixer');
-var precss = require('precss');
+var ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
+var autoprefixer = require( 'autoprefixer' );
+var precss = require( 'precss' );
+var path = require( 'path' );
 
 module.exports = {
   entry: {
@@ -11,7 +12,9 @@ module.exports = {
   },
 
   output: {
-    filename: 'public/js/main.js',
+    path: path.resolve( __dirname, 'public' ),
+    publicPath: '/js/',
+    filename: 'main.js',
     sourceMapFilename: 'main.js.map'
   },
 
@@ -26,15 +29,17 @@ module.exports = {
     ],
     loaders: [
       { test: /\.jsx$|\.es6$|\.js$/, loader: 'babel', query: { presets: ['react', 'es2015'] }, exclude: /(node_modules|bower_components)/ },
-      { test: /\.scss$|\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!sass-loader') },
-      { test: /\.jpe?g$|\.png$|\.gif$|\.svg$/, loader: 'url?limit=8192!img' }
+      { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader') },
     ]
   },
 
   devtool: "eval",
 
   postcss: function() {
-    return [autoprefixer, precss];
+    return [
+        autoprefixer( { browsers: ['last 2 versions'] } ),
+        precss
+    ];
   },
 
   plugins: [
