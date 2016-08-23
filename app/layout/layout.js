@@ -1,9 +1,8 @@
 import React from 'react';
-import Header from './Header';
-import Nav from './Nav';
+import Header from '../components/Header';
 
 // Add API call here to return a list of files to map through below
-const Main = ( { children, history } ) => {
+const Layout = ( { children, history } ) => {
 	return (
 		<div className="main-container">
 			<Header />
@@ -14,4 +13,4 @@ const Main = ( { children, history } ) => {
 	)
 }
 
-export default Main;
+export default Layout;

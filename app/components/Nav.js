@@ -2,17 +2,16 @@ import React from 'react';
 //import Router from 'react-router';
 
 class Nav extends React.Component {
+	_handleClick( e ) {
+		e.preventDefault();
+
+		this.props.updateComponent( this._filename );
+	}
 	render() {
 		return (
-			<ul className="list-group">
-				{ this.props.fileList.map( ( file, index ) => {
-					return (
-						<li className="list-group-item" key={ index }>
-							{ file.name && <a href={ file.download_url } onClick={ ( e ) => this.props.updateComponent( e ) } data-type={ file.type } data-filename={ file.name }>{ file.name }</a> }
-						</li>
-					);
-				} ) }
-			</ul>
+			<li className="list-group-item" key={ this.props.key }>
+				{ this.props.fileName && <a href={ this.props.download_url } onClick={ ( e ) => this._handleClick( e ) } ref={ () => ( this._filename = this.props.fileName ) }>{ this.props.fileName }</a> }
+			</li>
 		)
 	}
 }

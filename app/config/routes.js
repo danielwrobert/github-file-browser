@@ -1,12 +1,21 @@
+/**
+ * External Dependencies
+ */
 import React from 'react';
-import Main from '../components/Main';
-import GitHubFiles from '../components/GitHubFiles';
-import Home from '../components/Home';
 import { Route, IndexRoute } from 'react-router';
 
+/**
+ * Internal Dependencies
+ */
+import Layout from '../layout/layout';
+import HomePage from '../pages/home';
+import ComponentsPage from '../pages/components';
+import GitHubFiles from '../components/GitHubFiles';
+
 export default (
-	<Route path="/" component={ Main }>
-		<Route path="components/:filename" component={ GitHubFiles } />
-		<IndexRoute component={ Home } />
+	<Route path="/" component={ Layout }>
+		<Route path="components" component={ ComponentsPage } />
+			<Route path="components/:filename" component={ ComponentsPage } />
+		<IndexRoute component={ HomePage } />
 	</Route>
 );

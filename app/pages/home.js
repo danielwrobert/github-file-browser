@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Home = () => {
+const HomePage = () => {
 	return (
 		<div className="home-content-wrap">
 			<h2 className="text-center" style={{ marginBottom: 25 }}>Welcome to Theme Compoonents!</h2>
@@ -11,4 +11,4 @@ const Home = () => {
 	)
 }
 
-export default Home;
+export default HomePage;

@@ -2,51 +2,77 @@ import React from 'react';
 import Router from 'react-router';
 import Nav from './Nav';
 import FileContent from './FileContent';
-import { getGitHubInfo, getFileList, getFileContent } from '../utils/helpers';
+import { _getFileList, _getFileContent } from '../utils/helpers';
 
 class GitHubFiles extends React.Component {
 	constructor( props ) {
 		super( props );
 
 		this.state = {
-			filecontent: '',
-			fileList: []
+			fileList: [],
+			fileName: '',
+			fileContent: ''
 		}
 
 		this._updateComponent = this._updateComponent.bind( this );
+		//this._fetchFileData = this._fetchFileData.bind( this );
 	}
-	_fetchFileData( filename ) {
-		getGitHubInfo( filename )
-			.then( function( data ) {
-				this.setState( {
-					filecontent: data.filecontent,
-					fileList: data.files
-				} );
-			}.bind( this ) );
-	}
-	_updateComponent( e ) {
-		e.preventDefault();
-		const filename = e.target.dataset.filename;
-		const filetype = e.target.dataset.type;
 
-		if ( filetype === 'file' ) {
-			this.context.router.push( '/components/' + filename );
-		}
+	//componentWillMount() {
+	componentDidMount() {
+		this._fetchFileData( this.state.fileName || 'index.php' );
+		//this._fetchFileData( 'index.php' );
 	}
-	componentWillMount() {
-		this._fetchFileData( this.props.params.filename );
+
+	//componentWillReceiveProps() {
+		//this._fetchFileData( this.state.fileName );
+	//}
+
+	_fetchFileData( filename ) {
+		_getFileContent( filename )
+			.then( _getFileList )
+			.then( ( data ) => {
+				this.setState( {
+					fileList: data.files,
+					fileName: filename,
+					fileContent: data.filecontent
+				} );
+			} );
 	}
-	componentWillUpdate() {
-		this._fetchFileData( this.props.params.filename );
+
+	_updateComponent( filename ) {
+		_getFileContent( filename )
+			.then( ( data ) => {
+				this.setState( {
+					fileName: filename,
+					fileContent: data.filecontent
+				} );
+			} );
+
+		this.context.router.push( '/components/' + filename );
 	}
+
+	_renderNavigation() {
+		return (
+			<ul className="list-group">
+				{ this.state.fileList.map( ( file, index ) => {
+					return (
+						<Nav updateComponent={ this._updateComponent } fileName={ file.name } fileUrl={ file.download_url } key={ index } />
+					);
+				} ) }
+			</ul>
+		)
+	}
+
 	render() {
+		const componentNav = this._renderNavigation();
 		return (
 			<div className="row">
 				<div className="col-md-4">
-					<Nav updateComponent={ this._updateComponent } fileList={ this.state.fileList } history={ history } />
+					{ componentNav }
 				</div>
 				<div className="col-md-8">
-					{ this.props.children }
+					<FileContent fileName={ this.state.fileName } fileContent={ this.state.fileContent || 'Empty...' } />
 				</div>
 			</div>
 		)
