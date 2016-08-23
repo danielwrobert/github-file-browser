@@ -8,14 +8,7 @@ const Main = ( { children, history } ) => {
 		<div className="main-container">
 			<Header />
 			<div className="container" style={{ marginTop: 50 }}>
-				<div className="row">
-					<div className="col-md-4">
-						<Nav history={ history } />
-					</div>
-					<div className="col-md-8">
-						{ children }
-					</div>
-				</div>
+				{ children }
 			</div>
 		</div>
 	)
