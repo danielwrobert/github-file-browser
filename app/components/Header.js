@@ -16,7 +16,7 @@ const Header = () => {
 							<Link to="/">Home</Link>
 						</li>
 						<li>
-							<Link to="components/index.php">Components</Link>
+							<Link to="components/README.md">Components</Link>
 						</li>
 					</ul>
 				</div>
