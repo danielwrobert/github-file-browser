@@ -16,14 +16,13 @@ class GitHubFiles extends React.Component {
 		this._updateComponent = this._updateComponent.bind( this );
 	}
 
-	//componentWillMount() {
-	componentDidMount() {
+	componentWillMount() {
 		this._fetchFileData( this.props.filename );
 	}
 
-	componentWillReceiveProps() {
-		this._fetchFileData( this.props.filename );
-	}
+	//componentDidMount() {
+		//this._fetchFileData( this.props.filename );
+	//}
 
 	_fetchFileData( filename ) {
 		_getFileContent( filename )
