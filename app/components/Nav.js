@@ -1,5 +1,4 @@
 import React from 'react';
-//import Router from 'react-router';
 
 class Nav extends React.Component {
 	_handleClick( e ) {
@@ -15,9 +14,5 @@ class Nav extends React.Component {
 		)
 	}
 }
-
-//Nav.contextTypes = {
-	//router: React.PropTypes.object.isRequired
-//}
 
 export default Nav;

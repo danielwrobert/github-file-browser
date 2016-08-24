@@ -10,23 +10,20 @@ class GitHubFiles extends React.Component {
 
 		this.state = {
 			fileList: [],
-			fileName: '',
 			fileContent: ''
 		}
 
 		this._updateComponent = this._updateComponent.bind( this );
-		//this._fetchFileData = this._fetchFileData.bind( this );
 	}
 
 	//componentWillMount() {
 	componentDidMount() {
-		this._fetchFileData( this.state.fileName || 'index.php' );
-		//this._fetchFileData( 'index.php' );
+		this._fetchFileData( this.props.filename );
 	}
 
-	//componentWillReceiveProps() {
-		//this._fetchFileData( this.state.fileName );
-	//}
+	componentWillReceiveProps() {
+		this._fetchFileData( this.props.filename );
+	}
 
 	_fetchFileData( filename ) {
 		_getFileContent( filename )
@@ -34,7 +31,6 @@ class GitHubFiles extends React.Component {
 			.then( ( data ) => {
 				this.setState( {
 					fileList: data.files,
-					fileName: filename,
 					fileContent: data.filecontent
 				} );
 			} );
@@ -44,7 +40,6 @@ class GitHubFiles extends React.Component {
 		_getFileContent( filename )
 			.then( ( data ) => {
 				this.setState( {
-					fileName: filename,
 					fileContent: data.filecontent
 				} );
 			} );
@@ -72,11 +67,15 @@ class GitHubFiles extends React.Component {
 					{ componentNav }
 				</div>
 				<div className="col-md-8">
-					<FileContent fileName={ this.state.fileName } fileContent={ this.state.fileContent || 'Empty...' } />
+					<FileContent fileName={ this.props.filename } fileContent={ this.state.fileContent || 'Empty...' } />
 				</div>
 			</div>
 		)
 	}
+}
+
+GitHubFiles.propTypes = {
+	filename: React.PropTypes.string.isRequired,
 }
 
 GitHubFiles.contextTypes = {
