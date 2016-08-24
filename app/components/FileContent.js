@@ -1,19 +1,19 @@
 import React from 'react';
 
-const FileContent = ( { filename, filecontent } ) => {
+const FileContent = ( { fileName, fileContent } ) => {
 	return (
 		<div className="file-content-wrapper">
-			<h2>{ filename }</h2>
+			<h2>{ fileName }</h2>
 			<div className="file-content">
-				<pre>{ filecontent }</pre>
+				<pre>{ fileContent }</pre>
 			</div>
 		</div>
 	)
 }
 
 FileContent.propTypes = {
-	filename: React.PropTypes.string.isRequired,
-	filecontent: React.PropTypes.string.isRequired
+	fileName: React.PropTypes.string.isRequired,
+	fileContent: React.PropTypes.string.isRequired
 }
 
 export default FileContent;
