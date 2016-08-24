@@ -20,16 +20,16 @@ class GitHubFiles extends React.Component {
 		this._fetchFileData( this.props.filename );
 	}
 
-	//componentDidMount() {
-		//this._fetchFileData( this.props.filename );
-	//}
-
 	_fetchFileData( filename ) {
-		_getFileContent( filename )
-			.then( _getFileList )
+		_getFileList()
 			.then( ( data ) => {
 				this.setState( {
 					fileList: data.files,
+				} );
+			} );
+		_getFileContent( filename )
+			.then( ( data ) => {
+				this.setState( {
 					fileContent: data.filecontent
 				} );
 			} );
@@ -66,7 +66,7 @@ class GitHubFiles extends React.Component {
 					{ componentNav }
 				</div>
 				<div className="col-md-8">
-					<FileContent fileName={ this.props.filename } fileContent={ this.state.fileContent || 'Empty...' } />
+					<FileContent fileName={ this.props.filename } fileContent={ this.state.fileContent } />
 				</div>
 			</div>
 		)
