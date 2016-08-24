@@ -1,55 +1,18 @@
 import React from 'react';
-import Router from 'react-router';
-import { getFileList } from '../utils/helpers';
 
 class Nav extends React.Component {
-	constructor( props ) {
-		super( props );
-		this.state = {
-			fileList: []
-		}
-	}
-	initFileNav() {
-		getFileList()
-			.then( function( data ) {
-				this.setState( {
-					fileList: data.files
-				} );
-			}.bind( this ) );
-	}
-	updateComponent( e ) {
+	_handleClick( e ) {
 		e.preventDefault();
-		const filename = e.target.dataset.filename;
-		const filetype = e.target.dataset.type;
 
-		if ( filetype === 'file' ) {
-			this.context.router.push( '/component/' + filename );
-		}
-	}
-	componentDidMount() {
-		this.initFileNav();
+		this.props.updateComponent( this._filename );
 	}
 	render() {
 		return (
-			<ul className="list-group">
-				{ this.state.fileList.map( ( file, index ) => {
-					return (
-						<li className="list-group-item" key={ index }>
-							{ file.name && <a href={ file.download_url } onClick={ ( e ) => this.updateComponent( e ) } data-type={ file.type } data-filename={ file.name }>{ file.name }</a> }
-						</li>
-					);
-				} ) }
-			</ul>
+			<li className="list-group-item" key={ this.props.key }>
+				{ this.props.fileName && <a href={ this.props.download_url } onClick={ ( e ) => this._handleClick( e ) } ref={ () => ( this._filename = this.props.fileName ) }>{ this.props.fileName }</a> }
+			</li>
 		)
 	}
-}
-
-//Nav.propTypes = {
-	//files: React.PropTypes.array.isRequired
-//}
-
-Nav.contextTypes = {
-	router: React.PropTypes.object.isRequired
 }
 
 export default Nav;
